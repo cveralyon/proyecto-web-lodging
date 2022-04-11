@@ -1,0 +1,28 @@
+<div style="margin: 3rem">
+
+  <div style="margin: 3rem">
+    <p><h3><strong><%= @user.first_name %>&nbsp;<%= @user.last_name %></strong></h3>
+    <span>
+      <%unless !user_signed_in?%>
+        <% session[:watch_list] ||= "[]" %>
+        <%session[:watch_list] = ActiveSupport::JSON.decode(session[:watch_list])%>
+        <%session[:watch_list].push( @user.id )%>
+        <%session[:watch_list] = ActiveSupport::JSON.encode(session[:watch_list])%>
+
+        <%= link_to 'Contact', new_user_message_path(@user.id), class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 15px"%>
+      <%end %>
+     <%= link_to 'Back', users_path, class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 5px"%>
+    </span>
+  </div>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Rut:</strong>
+  <%= @user.rut %>
+</p>
+
+</div>

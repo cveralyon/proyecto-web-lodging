@@ -1,0 +1,29 @@
+<div style="margin: 3rem">
+<%= form_with(model: review_lodging) do |form| %>
+
+    <% if review_lodging.errors.any? %>
+    <div id="error_explanation">
+
+      <ul>
+        <% review_lodging.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

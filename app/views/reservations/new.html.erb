@@ -1,0 +1,14 @@
+
+<div style="margin: 3rem">
+  <div style="margin: 3rem">
+    <h1>New Reservation</h1>
+
+    <span>
+    <%= link_to 'Back', reservations_path, class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 5px"%>
+    </span>
+  </div>
+
+
+  <%= render 'form', reservation: @reservation %>
+
+</div>

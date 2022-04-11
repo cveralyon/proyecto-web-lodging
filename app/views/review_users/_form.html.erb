@@ -1,0 +1,33 @@
+<div style="margin: 3rem">
+
+<%= form_with(model: review_user) do |form| %>
+    <% if review_user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% review_user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_a_guest %>
+    <%= form.check_box :is_a_guest %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,15 @@
+
+<div style="margin: 3rem">
+  <div style="margin: 3rem">
+    <h1>New Message</h1>
+
+    <span>
+      <%= link_to 'Back', messages_path, class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 5px"%>
+
+    </span>
+  </div>
+
+
+  <%= render 'form', message: @message %>
+
+</div>

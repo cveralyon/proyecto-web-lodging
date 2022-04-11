@@ -1,0 +1,82 @@
+<%= form_with(model: search) do |form| %>
+  <form>
+    <div class="row">
+      <div class="col-sm-4 col-md-4 py-4">
+        <div class="mb-2">
+          <%= form.label :keywords, class: "form-label" %>
+          <%= form.text_field :keywords, class: "form-control" %>
+        </div>
+
+        <div class="mb-2" style="margin-top: 1rem">
+          <p> <%= form.label :check_in, "Check In", class: "form-label"   %>:   <%= form.date_select :check_in, size:10, class: "form-control" %></p>
+          <p> <%= form.label :Check_out, "Check Out", class: "form-label"   %>: <%= form.date_select :check_out, size:10, class: "form-control" %></p>
+          <p><%= form.label :location, class: "form-label" %> <%= form.text_field :location, class: "form-control" %></p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 py-4">
+        <div class="mb-2">
+          <p> <%= form.label :daily_fee_min, "Daily fee Min", class: "form-label"   %>  <%= form.text_field :daily_fee_min, size:10, class: "form-control" %></p>
+          <p> <%= form.label :daily_fee_max, "Daily fee Max" , class: "form-label"  %>  <%= form.text_field :daily_fee_max, size:10, class: "form-control" %></p>
+        </div>
+
+        <div class="mb-2">
+          <%= form.label :single_bed, class: "form-label" %>
+          <%= form.number_field :single_bed, class: "form-control" %>
+        </div>
+
+      </div>
+      <div class="col-sm-4 col-md-2 py-4">
+
+        <div class="mb-2">
+          <%= form.label :double_bed, class: "form-label" %>
+          <%= form.number_field :double_bed, class: "form-control" %>
+        </div>
+
+        <div class="mb-2" style="margin-top: 1rem">
+          <%= form.label :rooms, class: "form-label" %>
+          <%= form.number_field :rooms, class: "form-control" %>
+        </div>
+
+        <div class="mb-2" style="margin-top: 1rem">
+          <%= form.label :bathrooms, class: "form-label" %>
+          <%= form.number_field :bathrooms, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 py-4" style="margin-top: 2rem">
+        <div class="mb-3 form-check">
+          <%= form.label :pets_accepted, class: "form-check-label" %>
+          <%= form.check_box :pets_accepted, class: "form-check-input" %>
+        </div>
+
+        <div class="mb-3 form-check">
+          <%= form.label :parking_lot, class: "form-check-label" %>
+          <%= form.check_box :parking_lot , class: "form-check-input"%>
+        </div>
+
+        <div class="mb-3 form-check">
+          <%= form.label :breakfast_included, class: "form-check-label" %>
+          <%= form.check_box :breakfast_included, class: "form-check-input" %>
+        </div>
+
+        <div class="mb-3 form-check">
+          <%= form.label :jacuzzi , class: "form-check-label"%>
+          <%= form.check_box :jacuzzi , class: "form-check-input"%>
+        </div>
+
+
+      </div>
+      <div class="col-sm-4 col-md-2 py-4" style="margin-top: 2rem">
+        <div class="mb-3 form-check">
+          <%= form.label :gym, class: "form-check-label" %>
+          <%= form.check_box :gym, class: "form-check-input" %>
+        </div>
+        <div class="mb-3 form-check">
+          <%= form.label :smoke_free, class: "form-check-label" %>
+          <%= form.check_box :smoke_free, class: "form-check-input" %>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-block">SEARCH</button>
+      </div>
+    </div>
+  </form>
+<% end %>

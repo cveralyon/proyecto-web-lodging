@@ -1,0 +1,13 @@
+<div style="margin: 3rem">
+  <div style="margin: 3rem">
+    <h1>New Report</h1>
+
+    <span>
+      <%= link_to 'Back', reports_path, class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 5px"%>
+    </span>
+  </div>
+
+
+  <%= render 'form', report: @report %>
+
+</div>

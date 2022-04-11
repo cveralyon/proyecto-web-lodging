@@ -1,0 +1,43 @@
+<div style="margin: 3rem">
+<%= form_with(model: reservation) do |form| %>
+    <% if reservation.errors.any? %>
+    <div id="error_explanation">
+
+      <ul>
+        <% reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<form>
+    <div class="mb-3">
+    <%= form.label :entry_date, class: "form-label" %>
+    <%= form.date_select :entry_date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :departure_date, class: "form-label" %>
+    <%= form.date_select :departure_date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :price %>
+    <input class="form-control" type="text" placeholder="Total price" aria-label="calculo-precio" readonly>
+
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.label :transfer_receipt, class: "form-check-label" %>
+    <%= form.check_box :transfer_receipt, class: "form-check-input" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :reserve_expiration, class: "form-label" %>
+    <%= form.date_select :reserve_expiration, class: "form-control" %>
+  </div>
+
+    <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Submit</button>
+</form>
+<% end %>
+</div>

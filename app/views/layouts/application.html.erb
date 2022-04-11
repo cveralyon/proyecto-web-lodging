@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iSpot</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBj67DY5XGEwI-KvNxZcEREuZ4oVdrLR2g' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield(:head_tags) %>
+  </head>
+  <body>
+  <meta name='turbolinks-visit-control' content='reload'>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="people-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </symbol>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <symbol id="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </symbol>
+    </svg>
+
+    <header>
+      <div class="fixed-top">
+        <div class="collapse bg-dark" id="navbarHeader" style="background-color: #403d3d;">
+          <div class="container">
+
+            <%= render 'searches/searchB', search: @search %>
+
+          </div>
+        </div>
+        <div class="navbar navbar-dark shadow-sm" style="background-color: #323232;">
+          <div class="container">
+            <a href="/" >
+              <%=image_tag("logoISPOT.png", srcset: { "logoISPOT.png" => "2.5x" }) %>
+            </a>
+            <ul class="nav me-auto mb-2 mb-lg-0" style="padding-left: 20px">
+              <%= link_to 'Home', root_path, class: "nav-link px-2 text-white"%>
+              <%= link_to 'Lodgings', lodgings_path, class: "nav-link px-2 text-white"%>
+              <%= link_to 'Users', users_path, class: "nav-link px-2 text-white"%>
+            </ul>
+            <a class="navbar-toggler btn-close-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <svg class="bi d-block mx-auto mb-1" width="40" height="40"><use xlink:href="#bi bi-search"/></svg>
+            </a>
+            <a class="navbar-toggler dropdown-toggle-split btn-close-white" type="button"  id="navbarDropdownMenuUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg class="bi d-block mx-auto mb-1" width="40" height="40"><use xlink:href="#people-circle"/></svg>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuUser" >
+              <%unless !user_signed_in?%>
+                &nbsp;&nbsp;&nbsp; <b>Welcome, <i><%=current_user.first_name%></i></b>
+                  <%= link_to 'Profile', edit_user_registration_path(current_user), class: "dropdown-item"%>
+                  <%= link_to 'Messages', user_messages_path(current_user), class: "dropdown-item"%>
+                  <%= link_to 'My Lodgings', user_lodgings_path(current_user), class: "dropdown-item"%>
+                  <%= link_to 'My Reservations', user_reservations_path(current_user), class: "dropdown-item"%>
+                  <%= link_to 'My Lodgings Reviews', user_review_lodgings_path(current_user), class: "dropdown-item"%>
+                  <%= link_to 'My Users Reviews', user_review_users_path(current_user), class: "dropdown-item"%>
+                  <hr class="dropdown-divider">
+                  <%=link_to 'Sign out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+
+                <%else%>
+                  <%=link_to "Sign in", new_user_session_path, class: "dropdown-item" %>
+                  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post %>
+                <hr class="dropdown-divider">
+                  <%=link_to "Register", new_user_registration_path, class: "dropdown-item" %>
+
+            <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+    <main>
+        <% unless flash[:notice].nil? %>
+          <div class="row mb-2" style="margin: 3rem">
+            <div class="col-6">
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=flash[:notice]%>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+        <% end %>
+        <%= yield %>
+    </main>
+    <!-- FOOTER -->
+
+    <footer class="container">
+      <hr class="featurette-divider" style="margin-bottom: 1rem">
+      <div class="container bg-dark text-white">
+        <p style="padding-left: 1rem" >&copy; 2021 iSpot, Inc.&nbsp; &middot; &nbsp;<a class="text-white" href="https://www.termsofservicegenerator.net/live.php?token=RTNa8moVQwt5Sh8hBZ397CFyerJgUBoR" style="text-decoration: none">Terms of Service</a> &nbsp; &middot; &nbsp;
+          <a class="text-white" style="text-decoration: none" href="https://www.termsofusegenerator.net/live.php?token=BSaxgYtBWTnZtrkCUg0QpbDwvEINGB1a">Terms of Use</a>&nbsp; &middot; &nbsp;<a class="text-white" style="text-decoration: none" href="/reports">Reports</a><i id = "icn_instagram"class="bi bi-instagram" href="/"></i>   &nbsp;
+          <i class="bi bi-facebook" href="/"></i>  &nbsp;
+          <i class="bi bi-twitter" href="/"></i>
+        </p>
+      </div>
+
+    </footer>
+  </body>
+</html>

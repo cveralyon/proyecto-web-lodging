@@ -1,0 +1,23 @@
+<div style="margin: 3rem">
+
+  <div style="margin: 3rem">
+    <p><h3><strong>Review of Lodging -> id#<%= @review_lodging.lodging_id %></strong></h3>
+
+    <span>
+       <%= link_to 'Edit', edit_review_lodging_path(@review_lodging), class: "btn btn-outline-dark align-content-center float-end"%>
+      <%= link_to 'Back', :back, class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 5px"%>
+    </span>
+  </div>
+
+  <p>
+  <strong>Text:</strong>
+  <%= @review_lodging.text %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review_lodging.rating %>
+</p>
+
+
+</div>

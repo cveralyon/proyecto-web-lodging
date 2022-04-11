@@ -1,0 +1,52 @@
+<div style="margin: 3rem">
+ <div style="margin-left: 3rem">
+   <h1>Lodgings</h1>
+
+   <%= form_tag lodgings_path, :method => 'get' do %>
+     <%= text_field_tag :search, params[:search] %>
+     <%= submit_tag "Search" %>
+   <%end %>
+
+   <%= link_to "Advance Search", new_search_path%>
+ </div>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @lodgings.each do |lodging| %>
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">No Image Aviable</text></svg>
+              <div class="card-body">
+                <a class="card-title"><%=lodging.name %></a>
+                <p class="card-text" type="text-overflow: ellipsis" ><%=lodging.description %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <%= link_to 'View', lodging, class: "btn btn-sm btn-outline-secondary" %>
+                    <%if can? :manage, :lodging or lodging.user_id == current_user.id%>
+                      <%= link_to 'Edit', edit_lodging_path(lodging), class: "btn btn-sm btn-outline-secondary" %>
+                      <%= link_to 'Delete', lodging, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-secondary" %>
+
+                    <%end%>
+                  </div>
+                  <small class="text-muted"> $ <%=lodging.daily_fee %> p/night</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="d-grid gap-2">
+    <%= link_to 'New Lodging', new_lodging_path, class: "btn btn-outline-dark btn-lg btn-block"%>
+
+  </div>
+
+
+
+</div>

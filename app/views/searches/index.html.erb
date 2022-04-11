@@ -1,0 +1,57 @@
+
+<h1>Searches</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th>Keywords</th>
+      <th>Check in</th>
+      <th>Check out</th>
+      <th>Daily fee min</th>
+      <th>Daily fee max</th>
+      <th>Location</th>
+      <th>Pets accepted</th>
+      <th>Parking lot</th>
+      <th>Breakfast included</th>
+      <th>Single bed</th>
+      <th>Double bed</th>
+      <th>Rooms</th>
+      <th>Bathrooms</th>
+      <th>Jacuzzi</th>
+      <th>Gym</th>
+      <th>Smoke free</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @searches.each do |search| %>
+      <tr>
+        <td><%= search.keywords %></td>
+        <td><%= search.check_in %></td>
+        <td><%= search.check_out %></td>
+        <td><%= search.daily_fee_min %></td>
+        <td><%= search.daily_fee_max %></td>
+        <td><%= search.location %></td>
+        <td><%= search.pets_accepted %></td>
+        <td><%= search.parking_lot %></td>
+        <td><%= search.breakfast_included %></td>
+        <td><%= search.single_bed %></td>
+        <td><%= search.double_bed %></td>
+        <td><%= search.rooms %></td>
+        <td><%= search.bathrooms %></td>
+        <td><%= search.jacuzzi %></td>
+        <td><%= search.gym %></td>
+        <td><%= search.smoke_free %></td>
+        <td><%= link_to 'Show', search %></td>
+        <td><%= link_to 'Edit', edit_search_path(search) %></td>
+        <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search', new_search_path %>

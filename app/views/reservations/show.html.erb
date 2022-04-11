@@ -1,0 +1,38 @@
+<div style="margin: 3rem">
+
+  <div style="margin: 3rem">
+    <p><h3><strong>Reservation #<%= @reservation.id %>></strong></h3>
+
+    <span>
+       <%= link_to 'Edit', edit_reservation_path(@reservation), class: "btn btn-outline-dark align-content-center float-end"%>
+      <%= link_to 'Back', reservations_path, class: "btn btn-outline-dark align-content-center float-end", style: "margin-right: 5px"%>
+    </span>
+  </div>
+
+  <p>
+  <strong>Entry date:</strong>
+  <%= @reservation.entry_date %>
+</p>
+
+<p>
+  <strong>Departure date:</strong>
+  <%= @reservation.departure_date %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @reservation.price %>
+</p>
+
+<p>
+  <strong>Transfer receipt:</strong>
+  <%= @reservation.transfer_receipt %>
+</p>
+
+<p>
+  <strong>Reserve expiration:</strong>
+  <%= @reservation.reserve_expiration %>
+</p>
+
+
+</div>

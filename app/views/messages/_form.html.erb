@@ -1,0 +1,28 @@
+<div style="margin: 3rem">
+<%= form_with(model: message) do |form| %>
+
+    <% if message.errors.any? %>
+    <div id="error_explanation">
+
+      <ul>
+        <% message.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form.hidden_field :messageSender_id, class: "form-control", value: current_user.id %>
+    <%= form.hidden_field :messageReceiver_id, class: "form-control", value: ActiveSupport::JSON.decode(session[:watch_list]) %>
+    <%session[:watch_list] = "[]" %>
+
+
+    </div><br/>
+  <div class="field">
+    <%= form.label :text, class: "form-label" %>
+    <%= form.text_field :text, class: "form-control" %>
+  </div><br/>
+
+  <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Send</button>
+
+<% end %>
+</div>

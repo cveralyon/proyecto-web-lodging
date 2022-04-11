@@ -1,0 +1,37 @@
+<div style="margin: 3rem">
+
+  <h1>Messages</h1>
+
+
+
+  <table class="table table-dark table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Text</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @messages.each do |message| %>
+      <tr id="tabla1">
+        <td scope="row"><%= message.text %></td>
+        <td><%= link_to 'Show', message, class: "btn btn-light" %></td>
+        <%if can? :manage, :message %>
+          <td><%= link_to 'Edit', edit_message_path(message), class: "btn btn-light" %></td>
+          <td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %></td>
+
+        <%end%>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <div class="d-grid gap-2">
+    <%= link_to 'New Message', new_message_path, class: "btn btn-outline-dark btn-lg btn-block"%>
+  </div>
+
+
+
+</div>

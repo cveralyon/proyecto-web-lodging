@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entry_date: 2021-04-24
+  departure_date: 2021-04-24
+  price: 
+
+two:
+  entry_date: 2021-04-24
+  departure_date: 2021-04-24
+  price: 
